@@ -10,5 +10,5 @@ SimpleStorage::SimpleStorage()
 SimpleStorage::~SimpleStorage() { 
 }
 
-TANK_SEARCHER_END_NAMESPACE(index);
 
+TANK_SEARCHER_END_NAMESPACE(index);

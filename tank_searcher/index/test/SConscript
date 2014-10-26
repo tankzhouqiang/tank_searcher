@@ -1,0 +1,20 @@
+# -*- mode: python -*-
+import os
+
+env=Environment(ENV=os.environ)
+env.AppendENVPath('LIB', '/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib:/home/zhouqiang/svn/tank_searcher/tank_searcher/index/')
+
+libcommon_sources = [
+    'mainTest.cpp',
+    'SimpleStorageTest.cpp',
+    ]
+
+Program('tank_searcher_index_test',
+        libcommon_sources, 
+        LIBS = ['gtest', 'Tank_Searcher_Index', 'pthread'], 
+        LIBPATH = ['.', '../', '../../../lib/'],
+        CCFLAGS = '-Iinclude/')
+
+cmd ="/usr/bin/env LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib:/home/zhouqiang/svn/tank_searcher/tank_searcher/index/ ./tank_searcher_index_test"
+print cmd
+os.system(cmd)

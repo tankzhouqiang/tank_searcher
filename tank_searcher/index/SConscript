@@ -11,3 +11,5 @@ libcommon_sources = [
 
 SharedLibrary(target = 'Tank_Searcher_Index',
              source = libcommon_sources)
+
+SConscript(['test/SConscript'])

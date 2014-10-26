@@ -20,7 +20,6 @@ public:
 private:
     SimpleStorage(const SimpleStorage &);
     SimpleStorage& operator=(const SimpleStorage &);
-public:
 private:
     int _simpleTest;
 };
