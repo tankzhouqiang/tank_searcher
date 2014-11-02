@@ -7,10 +7,10 @@ libcommon_sources = [
 
 Program('tank_searcher_builder_test',
         libcommon_sources, 
-        LIBS = ['gtest', 'Tank_Searcher_Builder', 'pthread'], 
+        LIBS = ['glog', 'gtest', 'Tank_Searcher_Builder', 'pthread'], 
         LIBPATH = ['.', '../', '../../../lib/'],
         CCFLAGS = '-Iinclude/')
 
-cmd ="/usr/bin/env LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib:/home/zhouqiang/svn/tank_searcher/tank_searcher/index/ ./tank_searcher_builder_test"
+cmd ="/usr/bin/env GLOG_logtostderr=1 LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib:/home/zhouqiang/svn/tank_searcher/tank_searcher/index/ ./tank_searcher_builder_test"
 print cmd
 os.system(cmd)

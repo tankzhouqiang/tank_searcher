@@ -12,6 +12,7 @@ public:
     ~SimpleStorage();
 public:
     void setSimpleTest(int num) {
+        LOG(INFO) << "SET setSimpleTest" << num ;
         _simpleTest = num;
     }
     int getSimpleTest() const {

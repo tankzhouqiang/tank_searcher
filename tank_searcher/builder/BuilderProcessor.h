@@ -11,11 +11,11 @@ public:
     BuilderProcessor();
     virtual ~BuilderProcessor() = 0;
 public:
-    bool init(BuilderConfig config) = 0;
-    bool process(Document *document) = 0;
-    void destory() = 0;
+    // virtual bool init(BuilderConfig config) = 0;
+    // virtual bool process(Document *document) = 0;
+    // vitual void destory() = 0;
 public:
-    BuilderProcessor* clone() = 0;
+//    BuilderProcessor* clone() = 0;
 private:
     BuilderProcessor(const BuilderProcessor &);
     BuilderProcessor& operator=(const BuilderProcessor &);
