@@ -5,6 +5,8 @@
 #include <iostream>
 #include <stdio.h>
 
+typedef std::map<std::string, std::string> KV_PAIR_MAP;
+
 //#define TANK_SEARCHER_BEGIN_NAMESPACE(x) namespace Tank_Searcher { namespace x {
 #define TANK_SEARCHER_BEGIN_NAMESPACE(x) namespace Tank_Searcher { namespace x{ 
 

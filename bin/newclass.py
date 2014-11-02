@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python
 
 import sys
 import os
@@ -28,7 +28,7 @@ def getHeaderPath(path):
         n = n-1
     
     dirCount = n;
-    while n >= 1 and ls[n] <> 'tbase':
+    while n >= 1 and ls[n] <> 'tank_searcher':
         n = n - 1
     n = n + 1
     path = ""
@@ -45,13 +45,12 @@ def createClassH(path, classname):
     if not ns:
         return False
     context = ""
-    context = context + "#ifndef TBASE_" + classname.upper() + "_H" + "\n"
-    context = context + "#define TBASE_" + classname.upper() + "_H" + "\n"
+    context = context + "#ifndef TANK_SEARCHER_" + classname.upper() + "_H" + "\n"
+    context = context + "#define TANK_SEARCHER_" + classname.upper() + "_H" + "\n"
     context = context + "" + "\n"
-    context = context + "#include <tbase/common/Common.h>" + "\n"
-    context = context + "#include <tbase/common/Log.h>" + "\n"
+    context = context + "#include <tank_searcher/common/Common.h>" + "\n"
     context = context + "" + "\n"
-    context = context + "TBASE_BEGIN_NAMESPACE(" + ns + ");" + "\n"
+    context = context + "TANK_SEARCHER_BEGIN_NAMESPACE(" + ns + ");" + "\n"
     context = context + "" + "\n"
     context = context + "class " + classname + "\n"
     context = context + "{" + "\n"
@@ -64,13 +63,12 @@ def createClassH(path, classname):
     context = context + "public:" + "\n"
     context = context + "" + "\n"
     context = context + "private:" + "\n"
-    context = context + "    TBASE_LOG_DECLARE();" + "\n"
     context = context + "};" + "\n"
     context = context + "" + "\n"
-    context = context + "TBASE_TYPEDEF_PTR(" + classname +");" + "\n\n"
-    context = context + "TBASE_END_NAMESPACE(" + ns + ");" + "\n"
+    context = context + "TANK_SEARCHER_TYPEDEF_PTR(" + classname +");" + "\n\n"
+    context = context + "TANK_SEARCHER_END_NAMESPACE(" + ns + ");" + "\n"
     context = context + "" + "\n"
-    context = context + "#endif //TBASE_" + classname.upper() + "_H" + "\n"
+    context = context + "#endif //TANK_SEARCHER_" + classname.upper() + "_H" + "\n"
     f = file(path + "/" + classname + ".h", "w")
     f.write(context)
     f.close()
@@ -83,12 +81,11 @@ def createClassCPP(path, classname):
         return False
     context = ""
     if (not re.match(".*/test", path)):
-        context = context + "#include <tbase/" + hp + "/" + classname + ".h>" + "\n"
+        context = context + "#include <tank_searcher/" + hp + "/" + classname + ".h>" + "\n"
     else:
-        context = context + "#include <tbase/" + hp + "/test/" + classname + ".h>" + "\n"
+        context = context + "#include <tank_searcher/" + hp + "/test/" + classname + ".h>" + "\n"
     context = context + "" + "\n"
-    context = context + "TBASE_BEGIN_NAMESPACE(" + ns + ");" + "\n"
-    context = context + "TBASE_LOG_SETUP(" + ns + ", " + classname + ");" + "\n"
+    context = context + "TANK_SEARCHER_BEGIN_NAMESPACE(" + ns + ");" + "\n"
     context = context + "" + "\n"
     context = context + classname + "::" + classname + "() { " + "\n"
     context = context + "}" + "\n"
@@ -96,7 +93,7 @@ def createClassCPP(path, classname):
     context = context + classname + "::~" + classname + "() { " + "\n"
     context = context + "}" + "\n"
     context = context + "" + "\n"
-    context = context + "TBASE_END_NAMESPACE(" + ns + ");" + "\n"
+    context = context + "TANK_SEARCHER_END_NAMESPACE(" + ns + ");" + "\n"
     context = context + "" + "\n"
     f = file(path + "/" + classname + ".cpp", "w")
     f.write(context)
