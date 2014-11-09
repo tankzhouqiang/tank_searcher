@@ -7,10 +7,11 @@
 
 libcommon_sources = [
     'FileUtil.cpp',
+    'JsonUtil.cpp',
     ]
 
 SharedLibrary(target = 'Tank_Searcher_Util',
              source = libcommon_sources,
-              CCFLAGS = '-I.')
+              CCFLAGS = '-I. -std=c++11')
 
 SConscript(['test/SConscript'])
