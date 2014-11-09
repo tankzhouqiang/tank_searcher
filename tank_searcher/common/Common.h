@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <iostream>
 #include <stdio.h>
+#include <libgen.h>
 #include <glog/logging.h>
 
 //#define TANK_SEARCHER_BEGIN_NAMESPACE(x) namespace Tank_Searcher { namespace x {
@@ -19,6 +20,15 @@
 
 #include <tr1/memory>
 #define TANK_SEARCHER_TYPEDEF_PTR(x) typedef std::tr1::shared_ptr<x> x##Ptr
+
+#define TEST_DATA "test_data"
+
+static std::string getExecPath() {    
+    char exec_name[2048] = {0};                                                                                                             
+    readlink("/proc/self/exe", exec_name, 2048);                                                                                            
+    char *dname = dirname(exec_name);                                                                                                       
+    return std::string(dname);                                                                                                              
+};
 
 #endif /*TANK_SEARCHER_COMMON_H_*/
 
