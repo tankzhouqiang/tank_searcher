@@ -1,0 +1,33 @@
+{
+	"modules" : [
+            {
+                "module_name" : "builder",
+                "module_path" : "libBuilder.so",
+                "parameters" : {
+	            "key1" : "value1",
+		    "key2" : "value2"
+                }
+            }
+	],
+	"DocumentProcessor" :
+	[ 
+	{
+	     "Name" : "DocumentParser",
+	     "ClassName" : "DocumentParserProcessor",
+	     "Parameter" : {
+	            "key1" : "value1",
+		    "key2" : "value2"
+             }
+        },
+	{
+	     "Name" : "DocumentTokenize",
+	     "ClassName" : "DocumentTokenizeProcessor"
+        }
+        ],
+	"DocumentProcessorChain" :{
+	[
+	 "DocumentParser",
+	 "DocumentTokenize"
+	]
+	}
+}
