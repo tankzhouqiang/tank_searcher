@@ -13,7 +13,7 @@ Program('tank_searcher_index_test',
         libcommon_sources, 
         LIBS = ['glog', 'gtest', 'Tank_Searcher_Index', 'pthread'], 
         LIBPATH = ['.', '../', '../../../lib/'],
-        CCFLAGS = '-Iinclude/')
+        CCFLAGS = '-Iinclude/ -I. -std=c++11')
 
 cmd ="/usr/bin/env GLOG_logtostderr=1 LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib:/home/zhouqiang/svn/tank_searcher/tank_searcher/index/ ./tank_searcher_index_test"
 print cmd

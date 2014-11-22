@@ -3,6 +3,7 @@ import os, sys
 SConscript(['index/SConscript'])
 SConscript(['builder/SConscript'])
 SConscript(['util/SConscript'])
+SConscript(['config/SConscript'])
 
 
 

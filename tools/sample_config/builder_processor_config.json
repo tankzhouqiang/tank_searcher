@@ -24,10 +24,9 @@
 	     "ClassName" : "DocumentTokenizeProcessor"
         }
         ],
-	"DocumentProcessorChain" :{
+	"DocumentProcessorChain" :
 	[
 	 "DocumentParser",
 	 "DocumentTokenize"
 	]
-	}
 }

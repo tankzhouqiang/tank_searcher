@@ -3,11 +3,14 @@
 
 #include <assert.h>
 #include <iostream>
+#include <map>
 #include <stdio.h>
 #include <libgen.h>
 #include <glog/logging.h>
+#include <folly/FBString.h>
 
-//#define TANK_SEARCHER_BEGIN_NAMESPACE(x) namespace Tank_Searcher { namespace x {
+typedef std::map<folly::fbstring, folly::fbstring> KeyValueMap;
+
 #define TANK_SEARCHER_BEGIN_NAMESPACE(x) namespace Tank_Searcher { namespace x{ 
 
 #define TANK_SEARCHER_END_NAMESPACE(x) } }

@@ -6,10 +6,13 @@
 # print env
 
 libcommon_sources = [
-    'SimpleStorage.cpp',
+    'BuildConfig.cpp',
+    'BuildConfigParser.cpp',
+    'ModulesConfig.cpp',
+    'DocumentProcessorConfig.cpp',
     ]
 
-SharedLibrary(target = 'Tank_Searcher_Index',
+SharedLibrary(target = 'Tank_Searcher_Config',
              source = libcommon_sources,
               CCFLAGS = '-Iinclude/ -I. -std=c++11')
 

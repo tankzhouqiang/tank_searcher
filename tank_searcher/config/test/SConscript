@@ -1,0 +1,18 @@
+# -*- mode: python -*-
+import os
+
+
+libcommon_sources = [
+    'mainTest.cpp',
+    'BuildConfigParserTest.cpp',
+    ]
+
+Program('tank_searcher_config_test',
+        libcommon_sources, 
+        LIBS = ['glog', 'gtest', 'folly','double-conversion','Tank_Searcher_Config', 'Tank_Searcher_Util', 'pthread'], 
+        LIBPATH = ['.', '../', '../../util', '../../../lib/'],
+        CCFLAGS = '-Iinclude/ -I. -std=c++11')
+
+cmd ="/usr/bin/env GLOG_logtostderr=1 LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib:/home/zhouqiang/svn/tank_searcher/tank_searcher/util/:/home/zhouqiang/svn/tank_searcher/tank_searcher/config/:/usr/lib/x86_64-linux-gnu/ ./tank_searcher_config_test"
+print cmd
+os.system(cmd)
