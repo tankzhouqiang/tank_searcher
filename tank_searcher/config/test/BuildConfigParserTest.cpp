@@ -1,7 +1,7 @@
 #include "../BuildConfigParser.h"
 #include <tank_searcher/util/FileUtil.h>
 #include <folly/json.h>
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
 using namespace std;
 using namespace::folly;
@@ -64,6 +64,7 @@ TEST_F(BuildConfigParserTest, parse) {
     ASSERT_EQ((size_t)2, processorConfigs.size());
     ASSERT_EQ(fbstring("DocumentParser"), processorConfigs[0].getName());
     ASSERT_EQ(fbstring("DocumentParserProcessor"), processorConfigs[0].getClassName());
+    ASSERT_EQ(fbstring("builder"), processorConfigs[0].getModuleName());
     
     KeyValueMap kvMap3 = processorConfigs[0].getParamMap();
     ASSERT_EQ((size_t)2, kvMap3.size());
@@ -72,6 +73,7 @@ TEST_F(BuildConfigParserTest, parse) {
 
     ASSERT_EQ(fbstring("DocumentTokenize"), processorConfigs[1].getName());
     ASSERT_EQ(fbstring("DocumentTokenizeProcessor"), processorConfigs[1].getClassName());
+    ASSERT_EQ(fbstring("builder2"), processorConfigs[1].getModuleName());
     KeyValueMap kvMap4 = processorConfigs[1].getParamMap();
     ASSERT_EQ((size_t)0, kvMap4.size());
 

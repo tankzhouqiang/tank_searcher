@@ -4,7 +4,6 @@
 #include <tank_searcher/common/Common.h>
 #include <tank_searcher/config/BuildConfig.h>
 #include <folly/json.h>
-#include <gtest/gtest.h>
 
 TANK_SEARCHER_BEGIN_NAMESPACE(config);
 
@@ -19,6 +18,7 @@ public:
     static const folly::fbstring DOCUMENT_PROCESSOR_KEY;
     static const folly::fbstring DOCUMENT_PROCESSOR_NAME_KEY;
     static const folly::fbstring DOCUMENT_PROCESSOR_CLASS_KEY;
+    static const folly::fbstring DOCUMENT_PROCESSOR_MODULE_NAME_KEY;
     static const folly::fbstring DOCUMENT_PROCESSOR_PARAM_KEY;
 
     static const folly::fbstring DOCUMENT_PROCESSOR_CHAIN;

@@ -2,7 +2,6 @@
 
 using namespace std;
 using namespace folly;
-using namespace ::testing;
 TANK_SEARCHER_BEGIN_NAMESPACE(config);
 
 const fbstring BuildConfigParser::MODULES_KEY = "modules";
@@ -10,12 +9,13 @@ const fbstring BuildConfigParser::MODULES_NAME_KEY = "module_name";
 const fbstring BuildConfigParser::MODULES_PATH_KEY = "module_path";
 const fbstring BuildConfigParser::MODULES_PARAM_KEY = "parameters";
 
-const fbstring BuildConfigParser::DOCUMENT_PROCESSOR_KEY = "DocumentProcessor";
-const fbstring BuildConfigParser::DOCUMENT_PROCESSOR_NAME_KEY = "Name";
-const fbstring BuildConfigParser::DOCUMENT_PROCESSOR_CLASS_KEY = "ClassName";
-const fbstring BuildConfigParser::DOCUMENT_PROCESSOR_PARAM_KEY = "Parameter";
+const fbstring BuildConfigParser::DOCUMENT_PROCESSOR_KEY = "document_processor";
+const fbstring BuildConfigParser::DOCUMENT_PROCESSOR_NAME_KEY = "name";
+const fbstring BuildConfigParser::DOCUMENT_PROCESSOR_CLASS_KEY = "class_name";
+const fbstring BuildConfigParser::DOCUMENT_PROCESSOR_MODULE_NAME_KEY = "module_name";
+const fbstring BuildConfigParser::DOCUMENT_PROCESSOR_PARAM_KEY = "parameter";
 
-const fbstring BuildConfigParser::DOCUMENT_PROCESSOR_CHAIN = "DocumentProcessorChain";
+const fbstring BuildConfigParser::DOCUMENT_PROCESSOR_CHAIN = "document_processor_chain";
 
 BuildConfigParser::BuildConfigParser() { 
 }
@@ -81,10 +81,20 @@ bool BuildConfigParser::parseDocumentProcessorConfig(
             LOG(ERROR) << "build process class name config error.";
             return false;
         }
+        fbstring moduleName;
+        if (!getJsonMapValue(*processorIt, 
+                             DOCUMENT_PROCESSOR_MODULE_NAME_KEY,
+                             moduleName)) 
+        {
+            LOG(ERROR) << "build process class name config error.";
+            return false;
+        }
+
         KeyValueMap kvMap;
         getParamMapValue(*processorIt, DOCUMENT_PROCESSOR_PARAM_KEY, 
                          kvMap);
-        DocumentProcessorConfig config(name, className, kvMap);
+        
+        DocumentProcessorConfig config(name, className, moduleName, kvMap);
         _config.addProcessorConfig(config);
     }
     return true;
@@ -143,7 +153,7 @@ bool BuildConfigParser::getParamMapValue(const dynamic& jsonMap, const fbstring&
 {
     dynamic::const_item_iterator it = jsonMap.find(key);
     if (it == jsonMap.items().end()) {
-        LOG(INFO) << "build config param not config.";
+        LOG(INFO) << "build config param " << key << " not config ";
         return true;
     }
     const dynamic& value = it->second;

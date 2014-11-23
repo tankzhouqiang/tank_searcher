@@ -10,6 +10,7 @@ class DocumentProcessorConfig
 public:
     DocumentProcessorConfig(const folly::fbstring& name, 
                             const folly::fbstring& className, 
+                            const folly::fbstring& moduleName, 
                             const KeyValueMap& paramMap);
     ~DocumentProcessorConfig();
 public:
@@ -19,6 +20,11 @@ public:
     const folly::fbstring& getClassName() const {
         return _className;
     }
+
+    const folly::fbstring& getModuleName() const {
+        return _moduleName;
+    }
+    
     const KeyValueMap& getParamMap() const {
         return _paramMap;
     }
@@ -28,6 +34,7 @@ public:
 private:
     folly::fbstring _name;
     folly::fbstring _className;
+    folly::fbstring _moduleName;
     KeyValueMap _paramMap;
 };
 

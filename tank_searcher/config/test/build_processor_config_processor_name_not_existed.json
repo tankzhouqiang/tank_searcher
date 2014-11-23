@@ -36,6 +36,6 @@
 	"document_processor_chain" :
 	[
 	 "DocumentParser",
-	 "DocumentTokenize"
+	 "not_existed"
 	]
 }

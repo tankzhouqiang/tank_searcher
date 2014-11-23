@@ -21,7 +21,7 @@
 	{
 	     "name" : "DocumentParser",
 	     "class_name" : "DocumentParserProcessor",
-	     "module_name" : "builder",
+	     "module_name" : "not_existed",
 	     "parameter" : {
 	            "key1" : "value1",
 		    "key2" : "value2"

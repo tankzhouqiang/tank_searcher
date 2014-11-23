@@ -18,24 +18,8 @@
 	],
 	"document_processor" :
 	[ 
-	{
-	     "name" : "DocumentParser",
-	     "class_name" : "DocumentParserProcessor",
-	     "module_name" : "builder",
-	     "parameter" : {
-	            "key1" : "value1",
-		    "key2" : "value2"
-             }
-        },
-	{
-	     "name" : "DocumentTokenize",
-	     "class_name" : "DocumentTokenizeProcessor",
-	     "module_name" : "builder2"
-        }
         ],
 	"document_processor_chain" :
 	[
-	 "DocumentParser",
-	 "DocumentTokenize"
 	]
 }
