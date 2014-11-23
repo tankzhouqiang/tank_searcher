@@ -120,44 +120,12 @@ def createClass(path, classname):
             print "create source file " + path + "/" + classname + ".cpp failed."
     return ret
 
-def insertMakefile(makefile, name):
-    TIP = "source_list"
-    TIPLEN = len(TIP)
-    TIP2 = "EXTRA_DIST"
-    TIP2LEN = len(TIP2)
-    fin = file(makefile, "r")
-    fbak = file(makefile + ".bak", "w")
-    context = fin.read()
-    fin.close()
-    fbak.write(context)
-    fbak.close()
-    fout = file(makefile, "w")
-    fin = file(makefile + ".bak", "r")
-    while True:
-        l = fin.readline()
-        if not l:
-            break
-        if len(l) > TIPLEN and l[:TIPLEN] == TIP:
-            l = l + "    " + name + ".cpp\\\n"
-#      n = l.find("=")
-#      if n != -1:
-#    l = l[:n+1] + " " + name + ".cpp " + l[n+1:]
-            if len(l) > TIP2LEN and l[:TIP2LEN] == TIP2:
-                l = l + "    " + name + ".h\\\n"
-#      n = l.find("=")
-#      if n != -1:
-#    l = l[:n+1] + " " + name + ".h " + l[n+1:]
-                fout.write(l)
-                fin.close()
-                fout.close()
-                print name + " has been inserted into " + makefile
-
 
 def insertSConscript(scon_name, name):
     hasFindSource = False
     hasWritten = False
     os.system("mv " + scon_name + " " + scon_name + ".bak")
-    TIP = ur"_sources\s*=\s*\["
+    TIP = "_sources\s*=\s*\["
     fin = file(scon_name + ".bak", "r");
     fout = file(scon_name, "w");
     while True:
@@ -184,4 +152,3 @@ if __name__ == "__main__":
     path = os.getcwd()
     if createClass(path, sys.argv[1]) == 2:
         insertSConscript(path + "/SConscript", sys.argv[1])
-#           insertMakefile(path + "/Makefile.am", sys.argv[1])

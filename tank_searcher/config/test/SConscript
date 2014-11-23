@@ -5,6 +5,7 @@ import os
 libcommon_sources = [
     'mainTest.cpp',
     'BuildConfigParserTest.cpp',
+    'BuildConfigValidateTest.cpp',
     ]
 
 Program('tank_searcher_config_test',

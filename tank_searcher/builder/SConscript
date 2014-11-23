@@ -12,6 +12,6 @@ libcommon_sources = [
 
 SharedLibrary(target = 'Tank_Searcher_Builder',
              source = libcommon_sources,
-              CCFLAGS = '-I.')
+              CCFLAGS = '-Iinclude/ -I. -std=c++11')
 
 SConscript(['test/SConscript'])

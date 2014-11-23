@@ -4,6 +4,7 @@
 #include <tank_searcher/common/Common.h>
 #include <tank_searcher/config/BuildConfig.h>
 #include <folly/json.h>
+#include <gtest/gtest.h>
 
 TANK_SEARCHER_BEGIN_NAMESPACE(config);
 

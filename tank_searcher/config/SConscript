@@ -10,6 +10,7 @@ libcommon_sources = [
     'BuildConfigParser.cpp',
     'ModulesConfig.cpp',
     'DocumentProcessorConfig.cpp',
+    'BuildConfigValidate.cpp',
     ]
 
 SharedLibrary(target = 'Tank_Searcher_Config',
