@@ -4,7 +4,8 @@ TANK_SEARCHER_BEGIN_NAMESPACE(index);
 
 SimpleStorage::SimpleStorage() 
     :_simpleTest(0)
-{ 
+{
+
 }
 
 SimpleStorage::~SimpleStorage() { 

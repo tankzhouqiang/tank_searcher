@@ -1,9 +1,10 @@
 # -*- mode: python -*-
 import os, sys
-SConscript(['index/SConscript'])
-SConscript(['builder/SConscript'])
-SConscript(['util/SConscript'])
-SConscript(['config/SConscript'])
+Import('env')
+SConscript('index/SConscript', 'env')
+SConscript('builder/SConscript', 'env')
+SConscript('util/SConscript', 'env')
+SConscript('config/SConscript', 'env')
 
 
 

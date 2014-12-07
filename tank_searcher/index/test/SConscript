@@ -1,20 +1,22 @@
 # -*- mode: python -*-
 import os
-
-env=Environment(ENV=os.environ)
-env.AppendENVPath('LIB', '/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib:/home/zhouqiang/svn/tank_searcher/tank_searcher/index/')
+Import('env')
 
 libcommon_sources = [
     'mainTest.cpp',
     'SimpleStorageTest.cpp',
     ]
 
-Program('tank_searcher_index_test',
-        libcommon_sources, 
-        LIBS = ['glog', 'gtest', 'Tank_Searcher_Index', 'pthread'], 
-        LIBPATH = ['.', '../', '../../../lib/'],
-        CCFLAGS = '-Iinclude/ -I. -std=c++11')
 
-cmd ="/usr/bin/env GLOG_logtostderr=1 LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib:/home/zhouqiang/svn/tank_searcher/tank_searcher/index/ ./tank_searcher_index_test"
-print cmd
-os.system(cmd)
+def aRunUnitTest(env, src):
+    env.Program('tank_searcher_index_test',
+        src, 
+        LIBS = ['glog', 'gtest', 'Tank_Searcher_Index', 'pthread'], 
+        LIBPATH = ['.', '../', '../../../lib/'])
+
+    cmd ="/usr/bin/env GLOG_logtostderr=1 LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib:%s/build/index/ ./tank_searcher_index_test" % env['install_root']
+    print cmd
+    os.system(cmd)
+
+env.AddMethod(aRunUnitTest, 'ut')
+env.ut(libcommon_sources)

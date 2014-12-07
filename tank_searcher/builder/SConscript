@@ -1,17 +1,14 @@
 # -*- mode: python -*-
 
-# Import('env')
-# env = env.Clone()
-# env.MergeFlags('-I/home/zhouqiang/tank_searcher')
-# print env
+Import('env')
+env.MergeFlags('-I.')
 
 libcommon_sources = [
     'BuilderProcessor.cpp',
     'BuilderProcessorManager.cpp',
     ]
 
-SharedLibrary(target = 'Tank_Searcher_Builder',
-             source = libcommon_sources,
-              CCFLAGS = '-Iinclude/ -I. -std=c++11')
+env.SharedLibrary(target = 'Tank_Searcher_Builder',
+             source = libcommon_sources)
 
-SConscript(['test/SConscript'])
+SConscript('test/SConscript', 'env')

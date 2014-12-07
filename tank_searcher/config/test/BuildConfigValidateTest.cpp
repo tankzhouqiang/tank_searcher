@@ -2,7 +2,8 @@
 #include <tank_searcher/config/BuildConfigParser.h>
 #include <tank_searcher/util/FileUtil.h>
 
-#include "gtest/gtest.h"
+#include <stdlib.h>
+#include <gtest/gtest.h>
 #include <folly/json.h>
 
 using namespace std;
@@ -34,8 +35,11 @@ TEST_F(BuildConfigValidateTest, validateNormal) {
          "/build_processor_processor_not_config3.json"
         };
     uint32_t normalConfigCount = 5;
+    char *installRoot = getenv("install_root");
+    string configPrefix = installRoot;
+    configPrefix += "/tank_searcher/config/test/";
     for (uint32_t i = 0; i < 5; ++i) {
-        string configPath = getExecPath() + normalConfig[i];
+        string configPath = configPrefix + normalConfig[i];
         string jsonStr;
         FileUtil fileUtil;
         ASSERT_EQ(true, 
@@ -55,8 +59,12 @@ TEST_F(BuildConfigValidateTest, validateAbnormal) {
          "/build_processor_config_processor_name_not_existed.json"
         };
     uint32_t abnormalConfigCount = 2;
+    char *installRoot = getenv("install_root");
+    string configPrefix = installRoot;
+    configPrefix += "/tank_searcher/config/test/";
+
     for (uint32_t i = 0; i < abnormalConfigCount; ++i) {
-        string configPath = getExecPath() + abnormalConfig[i];
+        string configPath = configPrefix + abnormalConfig[i];
         string jsonStr;
         FileUtil fileUtil;
         ASSERT_EQ(true, 
@@ -66,7 +74,7 @@ TEST_F(BuildConfigValidateTest, validateAbnormal) {
         ASSERT_EQ(true, parser.parse(jsonFormatContent));
         //check result.
         const BuildConfig& config = parser.getBuildConfig();
-        ASSERT_EQ(false, BuildConfigValidate::validate(config));
+        ASSERT_FALSE(BuildConfigValidate::validate(config));
     }
 }
 

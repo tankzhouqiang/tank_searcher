@@ -1,17 +1,21 @@
 # -*- mode: python -*-
 import os
-
+Import('env')
 
 libcommon_sources = [
     'mainTest.cpp',
     ]
 
-Program('tank_searcher_config_test',
+def aRunUnitTest(env, src):
+    env.Program('tank_searcher_plugin_test',
         libcommon_sources, 
         LIBS = ['glog', 'gtest', 'folly','double-conversion','Tank_Searcher_Config', 'pthread'], 
-        LIBPATH = ['.', '../', '../../../lib/'],
-        CCFLAGS = '-Iinclude/ -I. -std=c++11')
+        LIBPATH = ['.', '../', '../../../lib/'])
 
-cmd ="/usr/bin/env GLOG_logtostderr=1 LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib:/home/zhouqiang/svn/tank_searcher/tank_searcher/util/:/usr/lib/x86_64-linux-gnu/ ./tank_searcher_config_test"
-print cmd
-os.system(cmd)
+    cmd ="/usr/bin/env GLOG_logtostderr=1 LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib:%s/build/plugin/ ./tank_searcher_plugin_test" % env['install_root']
+    print cmd
+    os.system(cmd)
+
+env.AddMethod(aRunUnitTest, 'ut')
+env.ut(libcommon_sources)
+

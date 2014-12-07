@@ -27,7 +27,9 @@ protected:
 };
 
 TEST_F(BuildConfigParserTest, parse) {
-    string configPath = getExecPath() + "/build_processor_config.json";
+    char *filePrefix = getenv("install_root");
+    string configPath = filePrefix;
+    configPath += "/tank_searcher/config/test/build_processor_config.json";
     string jsonStr;
     FileUtil fileUtil;
     ASSERT_EQ(true, 
